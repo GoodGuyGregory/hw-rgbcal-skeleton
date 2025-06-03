@@ -61,3 +61,7 @@ will eat CPU for no reason.
 
 I think the frame rate is probably set higher than it needs
 to be right now: it can be tuned lower.
+
+**LED Specifications**
+
+[LED Wiring Diagram](git@github.com:GoodGuyGregory/hw-rgbcal-skeleton.git)
