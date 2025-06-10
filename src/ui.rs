@@ -65,7 +65,7 @@ impl Ui {
                 }
             }
 
-            if !self._button_a.is_low() && self._button_b.is_low() {
+            else if !self._button_a.is_low() && self._button_b.is_low() {
                 rprintln!("B button held modify");
                 rprintln!("modify GREEN LED");
                 let level = self.knob.measure().await;
@@ -78,7 +78,7 @@ impl Ui {
                     .await;
                 }
             }
-
+            // when both are held 
             else if self._button_a.is_low() && self._button_b.is_low() {
                 rprintln!("A & B button held");
                 rprintln!("modify RED LED");
@@ -93,6 +93,15 @@ impl Ui {
                 }
             }
 
+            else {
+                rprintln!("adjust the frame-rate based on the position of the knob");
+                let mut frame_rate = self.knob.measure().await * 10;
+                if frame_rate == 0 {
+                    frame_rate = 10;
+                }
+                set_frame_rate(u64::from(frame_rate)).await;
+                self.state.frame_rate = u64::from(frame_rate);
+            }
 
             Timer::after_millis(50).await;
         }
