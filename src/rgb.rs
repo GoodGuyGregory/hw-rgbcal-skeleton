@@ -10,6 +10,7 @@ pub struct Rgb {
 }
 
 impl Rgb {
+    /// 
     fn frame_tick_time(frame_rate: u64) -> u64 {
         1_000_000 / (3 * frame_rate * LEVELS as u64)
     }

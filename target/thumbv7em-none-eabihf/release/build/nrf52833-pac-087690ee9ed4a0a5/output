@@ -1,0 +1,3 @@
+cargo:rustc-link-search=/Users/gregwitt/Github/clones/hw-rgbcal-skeleton/target/thumbv7em-none-eabihf/release/build/nrf52833-pac-087690ee9ed4a0a5/out
+cargo:rerun-if-changed=device.x
+cargo:rerun-if-changed=build.rs

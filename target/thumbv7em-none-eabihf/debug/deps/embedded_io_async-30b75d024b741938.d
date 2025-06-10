@@ -1,0 +1,9 @@
+/Users/gregwitt/Github/clones/hw-rgbcal-skeleton/target/thumbv7em-none-eabihf/debug/deps/libembedded_io_async-30b75d024b741938.rmeta: /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/lib.rs /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/impls/mod.rs /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/impls/slice_mut.rs /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/impls/slice_ref.rs /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/../README.md
+
+/Users/gregwitt/Github/clones/hw-rgbcal-skeleton/target/thumbv7em-none-eabihf/debug/deps/embedded_io_async-30b75d024b741938.d: /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/lib.rs /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/impls/mod.rs /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/impls/slice_mut.rs /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/impls/slice_ref.rs /Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/../README.md
+
+/Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/lib.rs:
+/Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/impls/mod.rs:
+/Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/impls/slice_mut.rs:
+/Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/impls/slice_ref.rs:
+/Users/gregwitt/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-async-0.6.1/src/../README.md:

@@ -1,0 +1,1 @@
+/Users/gregwitt/Github/clones/hw-rgbcal-skeleton/target/thumbv7em-none-eabihf/release/mb2-embassy-rgb: /Users/gregwitt/Github/clones/hw-rgbcal-skeleton/src/knob.rs /Users/gregwitt/Github/clones/hw-rgbcal-skeleton/src/main.rs /Users/gregwitt/Github/clones/hw-rgbcal-skeleton/src/rgb.rs /Users/gregwitt/Github/clones/hw-rgbcal-skeleton/src/ui.rs

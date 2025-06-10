@@ -1,6 +1,7 @@
 use crate::*;
 
 struct UiState {
+    // btw these are r, g, and b
     levels: [u32; 3],
     frame_rate: u64,
 }
@@ -50,15 +51,49 @@ impl Ui {
         .await;
         self.state.show();
         loop {
-            let level = self.knob.measure().await;
-            if level != self.state.levels[2] {
-                self.state.levels[2] = level;
-                self.state.show();
-                set_rgb_levels(|rgb| {
-                    *rgb = self.state.levels;
-                })
-                .await;
+            if self._button_a.is_low() && !self._button_b.is_low() {
+                rprintln!("A button held modify");
+                rprintln!("modify BLUE LED");
+                let level = self.knob.measure().await;
+                if level != self.state.levels[2] {
+                    self.state.levels[2] = level;
+                    self.state.show();
+                    set_rgb_levels(|rgb| {
+                        *rgb = self.state.levels;
+                    })
+                    .await;
+                }
             }
+
+            if !self._button_a.is_low() && self._button_b.is_low() {
+                rprintln!("B button held modify");
+                rprintln!("modify GREEN LED");
+                let level = self.knob.measure().await;
+                if level != self.state.levels[1] {
+                    self.state.levels[1] = level;
+                    self.state.show();
+                    set_rgb_levels(|rgb| {
+                        *rgb = self.state.levels;
+                    })
+                    .await;
+                }
+            }
+
+            else if self._button_a.is_low() && self._button_b.is_low() {
+                rprintln!("A & B button held");
+                rprintln!("modify RED LED");
+                let level = self.knob.measure().await;
+                if level != self.state.levels[0] {
+                    self.state.levels[0] = level;
+                    self.state.show();
+                    set_rgb_levels(|rgb| {
+                        *rgb = self.state.levels;
+                    })
+                    .await;
+                }
+            }
+
+
             Timer::after_millis(50).await;
         }
     }
