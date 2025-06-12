@@ -80,17 +80,47 @@ probably the most detailed, important but also simple struct throughout this cod
 
 ## Measurements:
 
+### Green Measurements:
+
+Minimum Acceptable:
+
+**Max Red/Blue**
+
+`red: 15`                                                
+`green: 4`                                               
+`blue: 15`                                               
+`frame rate: 40`
+
+**Moderate Red/Blue**
+
+`red: 7`
+`green: 12`
+`blue: 7`
+`frame rate: 50`
 
 
+### Blue Measurements: 
 
+Minimum Acceptable:
 
+**Max Green/Red**
+
+`red: 15`
+`green: 15`
+`blue: 8`
+`frame_rate: 40`
+
+**Moderate Green/Red**
+
+`red: 4`
+`green: 12`
+`blue: 11`
+`frame_rate: 50`
 
 ## How Development Went
 
+the development process was a bit slow. After I connected all of the wires and established the appropriate understanding of how the code worked I was able to see the relationship the `main` method and the `ui` of sharing state and developing a location inside of the `ui` where I was able to develop a solution that was able to keep track of the position of the knobs and also modify the levels of the rbg leds. 
 
-
-
-## Other Observations
 
 ## Build and Run
 
