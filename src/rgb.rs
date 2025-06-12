@@ -24,6 +24,9 @@ impl Rgb {
         }
     }
 
+    /// step takes an LED to modfiy as RGB 
+    /// this LED is then modified based on the time supplied for the refresh_rate and 
+    /// displayed accordingly.
     async fn step(&mut self, led: usize) {
         let level = self.levels[led];
         if level > 0 {
@@ -39,6 +42,9 @@ impl Rgb {
         }
     }
 
+    /// run takes nothing
+    /// sets the tick_time field which is acquired from the other classes to 
+    /// determine the length of time the light must be on according to our main ui context.
     pub async fn run(mut self) -> ! {
         loop {
             self.levels = get_rgb_levels().await;
