@@ -70,8 +70,7 @@ the `UiState`'s `show` method takes track of the main elements we care about hol
 
 ### `rgb.rs`
 
-
-
+the `rbg.rs` holds methods that we're primarily concerned with when it comes to calibration. `run` handles the setting of the `rgb_levels` from our `main.rs` and also the `frame_tick_time` to show the display of the led and modify it's refresh rate as needed. this is all handled with the `step` and `run` methods working together to establish a display functionality that wil modify our RGB led by the specified levels we choose.
 
 
 ### `knob.rs`
@@ -80,6 +79,8 @@ probably the most detailed, important but also simple struct throughout this cod
 
 
 ## Measurements:
+
+
 
 
 
