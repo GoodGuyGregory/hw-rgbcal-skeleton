@@ -21,7 +21,7 @@ I followed the supplied wiring specifications as mentioned in the project to ach
 
 ### Wiring For Project
 
-![](./img/wiring.JPG) 
+![](./img/PHOTO.JPG) 
 
 ### Connections Made
 
@@ -45,7 +45,22 @@ Pin 3 to +3.3V
 
 ### Code Comments 
 
+I've documented the code to the best of my understanding for each of the four components used. I will provide a brief high level understand of each below in a few sentences.
+
+### `main.rs`
+
+The `main.rs` sets the ground work for our knob code to convert analog to digital signal sources and calibrates our knob to register interrupts with embassy when the modifications to the dial are made.
+
+Apart from all of this the main connects our Mutex values which represent states of the running application and reflect our code changes to the `frame_rate` and the `rgb_levels` these levels are crucial to dialing in the white tone we are looking for. the threads are also joined for the `rbg` and the `ui` code to work in sync and share data accurately as we send interrupts to modify the code between the knob and the ui.
+
+### `ui.rs`
+
+### `rgb.rs`
+
+### `knob.rs`
+
 ## Measurements:
+
 
 
 
