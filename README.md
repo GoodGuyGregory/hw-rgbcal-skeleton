@@ -55,7 +55,19 @@ Apart from all of this the main connects our Mutex values which represent states
 
 ### `ui.rs`
 
+the ui is extremely important to the fine configurations we will need in order to get the unique balances of `white` we desire. we leverage the `UiState` and the `Ui` structs here within this code. 
+
+**Ui**
+
+the `Ui` holds all of the board peripherals and is the main way users will interact with the board. the knob, buttons and state are all nested within the `Ui` struct and hold the modification attributes we will leverage and access to dial in the colors we desire. 
+
+**UiState**
+
+the `UiState`'s `show` method takes track of the main elements we care about holding the access to the `frame_rate` and the `levels` which are the current state of an array of 3 `u32` elements which represent the state of the `Red`, `Green` or `Blue` in terms of an integer within `0-15` this struct's `show` method is crucial for us. apart from the `knob` code which dials in all of the signal configurations.
+
 ### `rgb.rs`
+
+
 
 ### `knob.rs`
 
