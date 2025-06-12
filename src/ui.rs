@@ -68,6 +68,7 @@ impl Ui {
         .await;
         self.state.show();
         loop {
+            // checks the state of the A button for BLUE changes
             if self._button_a.is_low() && !self._button_b.is_low() {
                 rprintln!("A button held modify");
                 rprintln!("modify BLUE LED");
@@ -81,7 +82,7 @@ impl Ui {
                     .await;
                 }
             }
-
+            // checks the state of the B button for the GREEN changes
             else if !self._button_a.is_low() && self._button_b.is_low() {
                 rprintln!("B button held modify");
                 rprintln!("modify GREEN LED");
@@ -95,7 +96,7 @@ impl Ui {
                     .await;
                 }
             }
-            // when both are held 
+            // Checks if both A and B states for the RED changes
             else if self._button_a.is_low() && self._button_b.is_low() {
                 rprintln!("A & B button held");
                 rprintln!("modify RED LED");
@@ -109,7 +110,8 @@ impl Ui {
                     .await;
                 }
             }
-
+                        // checks the state of both A and B to ensure FRAME_RATE 
+            // changes occur when both are not touched and the knob is moved.
             else {
                 rprintln!("adjust the frame-rate based on the position of the knob");
                 let mut frame_rate = self.knob.measure().await * 10;
