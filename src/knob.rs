@@ -1,9 +1,16 @@
 use crate::*;
-
+// Analog to Digital Conversion Import
 pub type Adc = saadc::Saadc<'static, 1>;
 
 pub struct Knob(Adc);
 
+/// Knob:
+/// 
+/// new() function to create a knob instance
+/// 
+/// measure() function to determine the current position state of the knob
+/// to ensure the knob is calibrated correctly, ensuring there is a scaled buffer
+/// for target resolution and a rounded result for the dial values 
 impl Knob {
     pub async fn new(adc: Adc) -> Self {
         adc.calibrate().await;
