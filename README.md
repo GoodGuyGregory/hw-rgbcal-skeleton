@@ -121,6 +121,94 @@ Minimum Acceptable:
 
 the development process was a bit slow. After I connected all of the wires and established the appropriate understanding of how the code worked I was able to see the relationship the `main` method and the `ui` of sharing state and developing a location inside of the `ui` where I was able to develop a solution that was able to keep track of the position of the knobs and also modify the levels of the rbg leds. 
 
+**LED Adjustment Logic**
+
+basically within the `run` calls of the `ui`. this logic however unimpressive is what will leverage the ability for the buttons of each required spec to detect the changes required to ensure the RED, GREEN, and BLUE. fields are changed based on the behavior of the UI. this seemed fairly intuitive and easier to modify than other interrupt logic we've written in the past for the drop assignments and has made me consider leveraging embassy in my personal projects. due to the simplicity of the run code it allows to ensure the knob is changed and measured.
+
+```rust
+// checks the state of the A button for BLUE changes
+    if self._button_a.is_low() && !self._button_b.is_low() {
+        rprintln!("A button held modify");
+        rprintln!("modify BLUE LED");
+        let level = self.knob.measure().await;
+        if level != self.state.levels[2] {
+            self.state.levels[2] = level;
+            self.state.show();
+            set_rgb_levels(|rgb| {
+                *rgb = self.state.levels;
+            })
+            .await;
+        }
+    }
+    // checks the state of the B button for the GREEN changes
+    else if !self._button_a.is_low() && self._button_b.is_low() {
+        rprintln!("B button held modify");
+        rprintln!("modify GREEN LED");
+        let level = self.knob.measure().await;
+        if level != self.state.levels[1] {
+            self.state.levels[1] = level;
+            self.state.show();
+            set_rgb_levels(|rgb| {
+                *rgb = self.state.levels;
+            })
+            .await;
+        }
+    }
+    // Checks if both A and B states for the RED changes
+    else if self._button_a.is_low() && self._button_b.is_low() {
+        rprintln!("A & B button held");
+        rprintln!("modify RED LED");
+        let level = self.knob.measure().await;
+        if level != self.state.levels[0] {
+            self.state.levels[0] = level;
+            self.state.show();
+            set_rgb_levels(|rgb| {
+                *rgb = self.state.levels;
+            })
+            .await;
+        }
+    }
+                // checks the state of both A and B to ensure FRAME_RATE 
+    // changes occur when both are not touched and the knob is moved.
+    else {
+        rprintln!("adjust the frame-rate based on the position of the knob");
+        let mut frame_rate = self.knob.measure().await * 10;
+        if frame_rate == 0 {
+            frame_rate = 10;
+        }
+        set_frame_rate(u64::from(frame_rate)).await;
+        self.state.frame_rate = u64::from(frame_rate);
+        self.state.show();
+    }
+```
+
+**LED Frame Rate and Accessing Levels**
+
+in order to leverage the ability to change the levels and frame rate for the ui. additional setters and accessors were required to allow for the state to be modified without too many things going wrong and crashing. 
+
+```rust
+// Mutex to hold the frame rate of the UI State Component
+pub static FRAME_RATE: Mutex<ThreadModeRawMutex, u64> = Mutex::new(100);
+```
+
+in order to make modifications in a civilized fashion adding the get_frame_rate and set_frame_rate made this easier for ensuring everything remains behaviorally normal when making the adjustments. with the assurance of Rust's lock system for the async method. to prevent deadlocks and race conditions.
+
+```rust
+// accessor method to get the frame_rate from the UiState 
+async fn get_frame_rate() -> u64 {
+    let frame_rate = FRAME_RATE.lock().await;
+    *frame_rate
+}
+
+// setter used to modify the frame rate within the UiState
+async fn set_frame_rate(incoming_rate: u64)
+{
+    let mut frame_rate = FRAME_RATE.lock().await;
+    *frame_rate = incoming_rate;
+}
+```
+
+this was already leverage for the Led levels and made the most sense to me to modify the levels and the frame rate consistently.
 
 ## Build and Run
 
