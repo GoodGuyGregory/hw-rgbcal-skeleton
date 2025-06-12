@@ -1,12 +1,18 @@
 use crate::*;
 
 struct UiState {
-    // btw these are r, g, and b
+    // btw these are representations of:
+    // RGB
     levels: [u32; 3],
+    // sets the refresh rate of the light
     frame_rate: u64,
 }
 
 impl UiState {
+    /// show:
+    /// used to display the state of each RGB element:
+    /// with values of R -> 0..15, G -> 0..15, B -> 0..15
+    /// used to also display the frame rate of the ui for calibration metrics and analysis
     fn show(&self) {
         let names = ["red", "green", "blue"];
         rprintln!();
@@ -18,6 +24,10 @@ impl UiState {
 }
 
 impl Default for UiState {
+    /// default:
+    /// function used to establish a default frame rate and RGB value per UiState
+    /// upon creation this is the default impl for the UiState object creation
+    ///
     fn default() -> Self {
         Self {
             levels: [LEVELS - 1, LEVELS - 1, LEVELS - 1],
@@ -26,6 +36,8 @@ impl Default for UiState {
     }
 }
 
+/// Ui struct to represent the user interface of the project:
+/// knobs buttons and also the current UIState for later reference.
 pub struct Ui {
     knob: Knob,
     _button_a: Button,
@@ -33,7 +45,9 @@ pub struct Ui {
     state: UiState,
 }
 
+/// Ui implementation from the struct 
 impl Ui {
+    /// constructor implementation for a freshly created/loaded ui
     pub fn new(knob: Knob, _button_a: Button, _button_b: Button) -> Self {
         Self {
             knob,
@@ -43,6 +57,9 @@ impl Ui {
         }
     }
 
+    /// async function which is joined to the main ui async methods to modify and run the states of 
+    /// the main application. run takes the state of the ui into context to allow for the appropriate dialing 
+    /// and modifications to the RBG values to be made as desired from the user.
     pub async fn run(&mut self) -> ! {
         self.state.levels[2] = self.knob.measure().await;
         set_rgb_levels(|rgb| {
@@ -101,6 +118,7 @@ impl Ui {
                 }
                 set_frame_rate(u64::from(frame_rate)).await;
                 self.state.frame_rate = u64::from(frame_rate);
+                self.state.show();
             }
 
             Timer::after_millis(50).await;
