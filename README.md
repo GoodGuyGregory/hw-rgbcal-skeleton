@@ -1,5 +1,58 @@
 # rgbcal: RGB LED calibration tool
-Bart Massey 2024
+
+Greg Witt
+
+
+## What Was Done
+
+In this project I wired up my breadboard to the required specifications to achieve a potentiometer configuration that configures **4 States** that will affect an **RGB LED** wired into our system. 
+
+**The 4 States Required**
+
+1. When No Buttons are Held *(A, or B)*: the potentiometer adjusts the `frame_rate` of the `UiState` ensuring the LED is set to a range of `10..160`
+
+2. When A Button is Held *(Only A button)*: the potentiometer adjusts the `blue` level of the RGB LED to ensure that it sets a state of `0..15` for the value of Blue within the LED
+
+3. When B Button is Held *(Only B button)*: the potentiometer adjusts the `green` level of the RGB LED to ensure that it sets a state of `0..15` for the value of Green within the LED.
+
+4. When A Button and B Button are Held *(Both Buttons)*: the potentiometer adjusts the `red` level of the RGB LED to ensure that it sets a state of `0..15` for the value of RED within the LED
+
+I followed the supplied wiring specifications as mentioned in the project to achieve a baseline light color which is `White` ish to start the project.
+
+### Wiring For Project
+
+![](./img/wiring.JPG) 
+
+### Connections Made
+
+**Bottom Left**
+
+Connect the RGB LED to the MB2 on the bottom Left
+
+Red to P9 (GPIO1)
+Green to P8 (GPIO2)
+Blue to P16 (GPIO3)
+Gnd to Gnd (From Both Sides of the Dragon Tail)
+
+
+**Bottom Right**
+
+Connect the potentiometer (knob) to the MB2 as follows:
+
+Pin 1 to Gnd
+Pin 2 to P2
+Pin 3 to +3.3V
+
+### Code Comments 
+
+## Measurements:
+
+
+
+## How Development Went
+
+
+## Other Observations
 
 This tool is designed to find out a decent frame rate and
 maximum RGB component values to produce a white-looking RGB
